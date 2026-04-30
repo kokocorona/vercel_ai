@@ -136,7 +136,7 @@ router.post("/image",async(req,res) => {
     // איפה שתשמר התמונה
     const fileName = Date.now()+".jpg"
     // const saveFileName = "public/images/"+fileName
-    const saveFileName = path.join('/tmp', fileName);
+    const saveFileName = path.join('/public', fileName);
     // const saveFileName = `${req.protocol}://${req.get('host')}/images/${fileName}`; 
     fs.writeFileSync(saveFileName, data)
     res.json({msg:"image",fileName,data})
