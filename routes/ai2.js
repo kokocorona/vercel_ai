@@ -3,6 +3,7 @@ const {GoogleGenerativeAI} = require("@google/generative-ai")
 require("dotenv").config({ quiet: true })
 const axios = require("axios");
 const fs = require("fs")
+const path = require("path")
 // מייצר משתנה ראוטר
 const router = express.Router();
 const genAi = new GoogleGenerativeAI(process.env.GEMINI_KEY)
@@ -134,7 +135,8 @@ router.post("/image",async(req,res) => {
     })
     // איפה שתשמר התמונה
     const fileName = Date.now()+".jpg"
-    const saveFileName = "public/images/"+fileName
+    // const saveFileName = "public/images/"+fileName
+    const saveFileName = path.join(__dirname,"../public/images/"+fileName)
     fs.writeFileSync(saveFileName, data)
     res.json({msg:"image",fileName,data})
   }
